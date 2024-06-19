@@ -81,6 +81,16 @@ Open a web browser and navigate to http://your_domain_or_ip. You should see the 
 
 ![image](https://github.com/mayaworld13/proxy-server/assets/127987256/5e847214-21a3-4a11-8a5c-d7bff0c867af)
 
+---
+
+## To automate this Run the script I have made
+
+```sh
+./proxy.sh YOURPUBLICIP
+```
+
+
+
 
 
  
