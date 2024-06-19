@@ -146,7 +146,7 @@ If you encounter a 502 Bad Gateway error, ensure the following:
    - Check the Docker container logs for errors:
 
    ```sh
-      docker logs your_container_id
+   docker logs your_container_id
    ```
 
 Ensure that NGINX is correctly configured and restart it if necessary:
