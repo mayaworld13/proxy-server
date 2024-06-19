@@ -7,7 +7,7 @@ This repository provides a step-by-step guide to setting up an NGINX reverse pro
 - AWS account
 - EC2 instance running Ubuntu
 - SSH access to the EC2 instance
-
+- add necessary ports to security inbound 
 ## Setup Instructions
 
 ### Step 1: Launch an EC2 Instance
@@ -36,6 +36,69 @@ sudo docker run -d -p 8000:8000 mayaworld13/django-todo-app
 <p>
   <img src="https://github.com/mayaworld13/proxy-server/assets/127987256/9d31f985-d2db-4660-8aec-8e29bc9ec512" alt="AWS VPC Project Diagram" width="700" height="400" />
 </p>
+
+### Step 4: Install NGINX
+Update the package list and install NGINX:
+
+```sh
+sudo apt update
+sudo apt install nginx -y
+```
+
+
+### Step 5: Configure NGINX as a Reverse Proxy
+Edit the NGINX configuration file to set up the reverse proxy for your Docker container running on port 8000:
+```sh
+sudo vim /etc/nginx/sites-available/default
+```
+Replace the existing configuration with the following:
+
+```sh
+server {
+    listen 80;
+    server_name PUBLICIP or domain name;
+
+    location / {
+        proxy_pass http://localhost:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+**`or`**
+<br> you can make a new configeration file for your app only thing you have to do is link the configeration files with this configeration
+
+```sh
+sudo vim /etc/nginx/sites-available/django-todo
+```
+
+write  configuration with the following:
+
+```sh
+server {
+    listen 80;
+    server_name PUBLICIP or Domain name;
+
+    location / {
+        proxy_pass http://localhost:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+Link this configeration
+
+```sh
+sudo ln /etc/nginx/sites-available/django-todo /etc/nginx/sites-enabled
+```
+
+Save and exit the file.
+
 
 
 
