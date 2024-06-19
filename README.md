@@ -99,6 +99,43 @@ sudo ln /etc/nginx/sites-available/django-todo /etc/nginx/sites-enabled
 
 Save and exit the file.
 
+### Step 6: Test and Restart NGINX
+Test the NGINX configuration for syntax errors:
+
+```sh
+sudo nginx -t
+```
+![image](https://github.com/mayaworld13/proxy-server/assets/127987256/2112be65-fe39-4d26-b362-8921c7da056c)
+
+If the test is successful, restart NGINX to apply the changes:
+
+```sh
+sudo systemctl restart nginx
+```
+
+### Step 7: Adjust Security Groups
+Ensure that the security group associated with your EC2 instance allows inbound traffic on port 80 (HTTP).
+
+Go to the EC2 Dashboard in the AWS Management Console.
+
+```sh
+Select your instance and navigate to the "Security" tab.
+Edit the inbound rules of the security group associated with your instance.
+Add a rule to allow HTTP traffic:
+Type: HTTP
+Protocol: TCP
+Port Range: 80
+Source: 0.0.0.0/0 (for testing purposes; restrict as needed)
+```
+### Step 8: Test the Reverse Proxy
+
+Open a web browser and navigate to your EC2 instance's public IP or domain name. You should see the content served by your Docker container running on port 8000.
+
+<p>
+  <img src="https://github.com/mayaworld13/proxy-server/assets/127987256/15b00b58-0fc2-4fb7-8258-03dd7564ee95" alt="AWS VPC Project Diagram" width="800" height="400" />
+</p>
+
+
 
 
 
