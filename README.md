@@ -134,6 +134,35 @@ Open a web browser and navigate to your EC2 instance's public IP or domain name.
 <p>
   <img src="https://github.com/mayaworld13/proxy-server/assets/127987256/15b00b58-0fc2-4fb7-8258-03dd7564ee95" alt="AWS VPC Project Diagram" width="800" height="400" />
 </p>
+---
+
+## Troubleshooting
+
+### 502 Bad Gateway Error
+If you encounter a 502 Bad Gateway error, ensure the following:
+
+   - Your Docker container is running and listening on port 8000.
+   - NGINX can reach your Docker container.
+   - Check the Docker container logs for errors:
+
+   ```sh
+      docker logs your_container_id
+   ```
+
+Ensure that NGINX is correctly configured and restart it if necessary:
+
+```sh
+sudo systemctl restart nginx
+```
+
+Check the NGINX error logs for more details:
+
+```sh
+sudo tail -f /var/log/nginx/error.log
+```
+
+### Conclusion
+You have successfully set up an NGINX reverse proxy on an EC2 instance for a Docker container running on port 8000. This configuration allows you to manage incoming traffic and forward it to your application running inside the Docker container.
 
 
 
