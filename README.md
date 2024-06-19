@@ -25,3 +25,19 @@ Use SSH to connect to your EC2 instance:
 
 ```sh
 ssh -i /path/to/your-key.pem ubuntu@your-ec2-public-ip
+```
+
+### Step 3: Run Your Application which ever port you want to run 
+In my case I am running my application using docker in port `8000`
+
+```sh
+sudo docker run -d -p 8000:8000 mayaworld13/django-todo-app
+```
+<p>
+  <img src="https://github.com/mayaworld13/proxy-server/assets/127987256/9d31f985-d2db-4660-8aec-8e29bc9ec512" alt="AWS VPC Project Diagram" width="700" height="400" />
+</p>
+
+
+
+
+
