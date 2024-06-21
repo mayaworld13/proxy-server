@@ -1,6 +1,6 @@
 # NGINX Reverse Proxy on EC2 for Docker Container
 
-This repository provides a step-by-step guide to setting up an NGINX reverse proxy on an AWS EC2 instance for a Docker container running on port 8000.
+This repository provides a step-by-step guide to setting up an NGINX reverse proxy on an AWS EC2 instance for a Docker container running on port 8000 or may be on any port.
 
 ## Prerequisites
 
